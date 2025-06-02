@@ -65,7 +65,7 @@ public class Game {
 
             // TODO : si grid.checkWin(currentPlayer.getSymbol()) retourne true :
             //           - appeler print() pour afficher l’état final
-            //           - afficher « Bravo <nom> ! Vous avez gagné. »
+            //           - afficher « Bravo <symbole> ! Vous avez gagné. »
             //           - mettre finished à true
 
             // TODO : sinon si grid.isFull() retourne true :
@@ -85,8 +85,8 @@ public class Game {
      * @param s Chaîne à tester (ex : "A1", "C3", etc.)
      * @return true si s.length()==2, s.charAt(0) ∈ {'A','B','C'} et s.charAt(1) ∈ {'1','2','3'}
      */
-    private boolean isValidFormat(String s) {
-        // TODO : implémenter la vérification du format.
+    public boolean isValidFormat(String s) {
+        // TODO : Exercice 3.1
         return false;
     }
 }

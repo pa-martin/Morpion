@@ -13,7 +13,7 @@ public class Player {
     }
 
     /**
-     * Affiche les informations du joueur : son nom et son symbole.<br>
+     * Affiche les informations du joueur : son symbole.<br>
      * Exemple : "Joueur Alice (X)"
      */
     public void print() {

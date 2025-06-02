@@ -1,11 +1,13 @@
 package morpion.models;
 
 public class Grid {
-    private final char[][] board;  // matrice 3×3 contenant 'X', 'O' ou '\0' pour vide
+
+    // matrice 3×3 contenant 'X', 'O' ou '\0' pour vide
+    private final char[][] board;
 
     public Grid() {
-        board = new char[3][3];
         // Par défaut, un tableau de char est initialisé à '\0', qu'on considérera comme case vide.
+        board = new char[3][3];
     }
 
     /**
@@ -16,8 +18,7 @@ public class Grid {
      * @return true si la case était libre et l’insertion a réussi, false sinon
      */
     public boolean placeMark(int row, int col, char symbol) {
-        // TODO : implémenter la logique pour placer un symbole si la case est libre.
-        //        Vérifier que row/col sont dans [0,2] et que board[row][col] == '\0'.
+        // TODO : Exercice 2.1
         return false;
     }
 
@@ -27,7 +28,7 @@ public class Grid {
      * @return true si 3 symboles alignés en ligne, colonne ou diagonale.
      */
     public boolean checkWin(char symbol) {
-        // TODO : implémenter la détection de victoire (3 lignes, 3 colonnes, 2 diagonales).
+        // TODO : Exercice 2.2
         return false;
     }
 
@@ -36,7 +37,7 @@ public class Grid {
      * @return true si toutes les cases sont occupées (≠ '\0').
      */
     public boolean isFull() {
-        // TODO : parcourir board et retourner false dès qu'une case == '\0'.
+        // TODO : Exercice 2.3
         return false;
     }
 

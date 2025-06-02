@@ -8,7 +8,7 @@ L’objectif est de vous faire implémenter, étape par étape, les parties logi
 ## Structure du projet
 
 * **Player.java**
-  Contient la classe `Player`, qui stocke le nom et le symbole d’un joueur et possède une méthode `print()` pour afficher ces informations.
+  Contient la classe `Player`, qui stocke le symbole d’un joueur et possède une méthode `print()` pour afficher ces informations.
 
   > **Aucune modification n’est nécessaire** dans cette classe (vous pouvez relire pour comprendre le rôle du joueur).
 
@@ -38,7 +38,7 @@ L’objectif est de vous faire implémenter, étape par étape, les parties logi
 
     * Le constructeur qui prend un `symbol`.
     * Le getters `getSymbol()`.
-    * La méthode `print()` qui affiche le nom et le symbole du joueur.
+    * La méthode `print()` qui affiche le symbole du joueur.
 
 Aucune implémentation n’est requise ici. Passez à l’exercice suivant une fois que vous êtes à l’aise avec le rôle de cette classe dans la structure générale.
 
@@ -59,55 +59,22 @@ Dans ce fichier, plusieurs méthodes sont incomplètes. Vous allez les remplir a
 * Si c’est le cas, placer `symbol` dans `board[row][col]` et retourner `true`.
 * Sinon (case occupée ou indices hors limites), retourner `false`.
 
-**Indice :**
-
-```java
-if (row < 0 || row > 2 || col < 0 || col > 2) {
-    return false;
-}
-if (board[row][col] != '\0') {
-    return false;
-}
-board[row][col] = symbol;
-return true;
-```
-
 ### 2.2 – checkWin(char symbol)
 
 **But :**
 
-* Vérifier s’il existe trois cases alignées (mêmes symboles) sur une même ligne, une même colonne ou l’une des deux diagonales.
+* Vérifier s’il existe trois cases alignées avec le même symbole sur une même ligne, une même colonne ou l’une des deux diagonales.
 * Retourner `true` dès qu’un alignement gagnant est détecté, sinon `false`.
 
-**Indices :**
-
-1. Tester chaque ligne `i` :
-
-   ```java
-   if (board[i][0] == symbol && board[i][1] == symbol && board[i][2] == symbol) {
-       return true;
-   }
-   ```
-2. Tester chaque colonne `j` :
-
-   ```java
-   if (board[0][j] == symbol && board[1][j] == symbol && board[2][j] == symbol) {
-       return true;
-   }
-   ```
-3. Tester les deux diagonales :
-
-   ```java
-   // Diagonale principale
-   if (board[0][0] == symbol && board[1][1] == symbol && board[2][2] == symbol) {
-       return true;
-   }
-   // Diagonale secondaire
-   if (board[0][2] == symbol && board[1][1] == symbol && board[2][0] == symbol) {
-       return true;
-   }
-   ```
-4. Si aucun alignement trouvé, retourner `false`.
+<details>
+  <summary>Indices</summary>
+    <ol>
+    <li>Tester chaque ligne `i`</li>
+    <li>Tester chaque colonne `j`</li>
+    <li>Tester les deux diagonales</li>
+    <li>Si aucun alignement trouvé, retourner `false`</li>
+    </ol>
+</details>
 
 ### 2.3 – isFull()
 
@@ -116,19 +83,6 @@ return true;
 * Parcourir toutes les cases de `board`.
 * Si vous trouvez une case valant `'\0'`, cela signifie qu’il reste au moins une case libre : retourner `false`.
 * Si vous terminez la boucle sans avoir trouvé de `'\0'`, la grille est pleine : retourner `true`.
-
-**Indice :**
-
-```java
-for (int i = 0; i < 3; i++) {
-    for (int j = 0; j < 3; j++) {
-        if (board[i][j] == '\0') {
-            return false;
-        }
-    }
-}
-return true;
-```
 
 ---
 
@@ -147,67 +101,9 @@ Dans ce fichier, vous allez compléter la logique de la boucle de jeu, la saisie
 * Vérifier que `s.charAt(1)` appartient à `{ '1', '2', '3' }`.
 * Si tout est correct, retourner `true`. Sinon, retourner `false`.
 
-**Indice :**
-
-```java
-if (s.length() != 2) return false;
-char c0 = s.charAt(0);
-char c1 = s.charAt(1);
-return (c0 >= 'A' && c0 <= 'C') && (c1 >= '1' && c1 <= '3');
-```
-
 ### 3.2 – play()
 
-La méthode `play()` gère le déroulé complet de la partie. Voici la structure à reproduire, en remplissant les blocs `TODO` :
-
-```java
-public void play() {
-    boolean finished = false;
-
-    while (!finished) {
-        print();
-        System.out.println("Au tour de " + currentPlayer.getSymbol());
-        System.out.print("Entrez un coup ([A-C][1-3], ex : B2) : ");
-        String input = scanner.nextLine().trim().toUpperCase();
-
-        // 1) Vérification du format
-        if (!isValidFormat(input)) {
-            System.out.println("Format invalide. Veuillez entrer, par exemple : A1, B3, C2...");
-            continue;
-        }
-
-        // 2) Conversion en indices numériques
-        int col = input.charAt(0) - 'A';  // 'A' → 0, 'B' → 1, 'C' → 2
-        int row = input.charAt(1) - '1';  // '1' → 0, '2' → 1, '3' → 2
-
-        // 3) Tentative de placement
-        boolean placed = grid.placeMark(row, col, currentPlayer.getSymbol());
-        if (!placed) {
-            System.out.println("Case déjà occupée ou invalide. Réessayez.");
-            continue;
-        }
-
-        // 4) Vérifier si le coup fait gagner le joueur courant
-        if (grid.checkWin(currentPlayer.getSymbol())) {
-            print();  // Afficher l’état final avec le dernier coup
-            System.out.println("Bravo " + currentPlayer.getSymbol() + " ! Vous avez gagné.");
-            finished = true;
-        }
-        // 5) Sinon, vérifier si la grille est pleine → match nul
-        else if (grid.isFull()) {
-            print();
-            System.out.println("Match nul ! La grille est pleine.");
-            finished = true;
-        }
-        // 6) Sinon, passer au joueur suivant
-        else {
-            currentPlayer = (currentPlayer == player1) ? player2 : player1;
-        }
-    }
-
-    scanner.close();
-}
-```
+La méthode `play()` gère le déroulé complet de la partie.
 
 **À vous d’implémenter les étapes suivantes (remplacez les TODO dans le fichier)** :
 
@@ -258,5 +154,4 @@ public void play() {
 
 ---
 
-Bon courage et bon apprentissage !
-N’hésitez pas à revenir sur les exercices si un résultat ne correspond pas à vos attentes.
+Généré à l'aide de ChatGPT o4-mini-high, le 2 juin 2025.

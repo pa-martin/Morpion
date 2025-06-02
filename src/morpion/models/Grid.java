@@ -1,7 +1,7 @@
 package morpion.models;
 
 public class Grid {
-    private final char[][] board;  // matrice 3×3 qui contient 'X', 'O' ou '\0' pour vide
+    private final char[][] board;  // matrice 3×3 contenant 'X', 'O' ou '\0' pour vide
 
     public Grid() {
         board = new char[3][3];
@@ -9,62 +9,35 @@ public class Grid {
     }
 
     /**
-     * Tente de placer le symbole d'un joueur sur la grille aux coordonnées indiquées.
+     * Tente de placer le symbole d'un joueur sur la grille aux coordonnées indiquées (row, col).
      * @param row Entre 0 et 2 (0 = ligne 1, 2 = ligne 3)
      * @param col Entre 0 et 2 (0 = colonne A, 2 = colonne C)
      * @param symbol 'X' ou 'O'
      * @return true si la case était libre et l’insertion a réussi, false sinon
      */
     public boolean placeMark(int row, int col, char symbol) {
-        if (row < 0 || row > 2 || col < 0 || col > 2) {
-            return false;
-        }
-        if (board[row][col] == '\0') {
-            board[row][col] = symbol;
-            return true;
-        }
+        // TODO : implémenter la logique pour placer un symbole si la case est libre.
+        //        Vérifier que row/col sont dans [0,2] et que board[row][col] == '\0'.
         return false;
     }
 
     /**
      * Vérifie si un joueur (avec le symbole donné) a gagné.<br>
-     * On teste les 3 lignes, 3 colonnes et 2 diagonales.
+     * @param symbol 'X' ou 'O'
+     * @return true si 3 symboles alignés en ligne, colonne ou diagonale.
      */
     public boolean checkWin(char symbol) {
-        // Lignes
-        for (int i = 0; i < 3; i++) {
-            if (board[i][0] == symbol && board[i][1] == symbol && board[i][2] == symbol) {
-                return true;
-            }
-        }
-        // Colonnes
-        for (int j = 0; j < 3; j++) {
-            if (board[0][j] == symbol && board[1][j] == symbol && board[2][j] == symbol) {
-                return true;
-            }
-        }
-        // Diagonales
-        if (board[0][0] == symbol && board[1][1] == symbol && board[2][2] == symbol) {
-            return true;
-        }
-        if (board[0][2] == symbol && board[1][1] == symbol && board[2][0] == symbol) {
-            return true;
-        }
+        // TODO : implémenter la détection de victoire (3 lignes, 3 colonnes, 2 diagonales).
         return false;
     }
 
     /**
-     * Vérifie si la grille est pleine (c’est un match nul si personne n’a gagné).
+     * Vérifie si la grille est pleine (match nul si personne n’a gagné).
+     * @return true si toutes les cases sont occupées (≠ '\0').
      */
     public boolean isFull() {
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
-                if (board[i][j] == '\0') {
-                    return false;
-                }
-            }
-        }
-        return true;
+        // TODO : parcourir board et retourner false dès qu'une case == '\0'.
+        return false;
     }
 
     /**
@@ -74,7 +47,7 @@ public class Grid {
      *   A B C<br>
      * 1 X| |O<br>
      *   -+-+-<br>
-     * 2  |X|<br>
+     * 2  |X| <br>
      *   -+-+-<br>
      * 3 O| |X
      */
@@ -100,4 +73,3 @@ public class Grid {
         }
     }
 }
-

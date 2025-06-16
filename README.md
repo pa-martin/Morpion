@@ -7,7 +7,7 @@ L’objectif est de vous faire implémenter, étape par étape, les parties logi
 ## Outils recommandés
 
 * L'IDE (Environnements de développement intégré) [IntelliJ IDEA Community Edition](https://www.jetbrains.com/idea/download/download-thanks.html?platform=windowsZip&code=IIC) de l'éditeur JetBrain
-* Java 21, disponible depuis l'IDE
+* Java 21, disponible depuis l'IDE sinon via le site d'[Oracle](https://download.oracle.com/java/21/latest/jdk-21_windows-x64_bin.zip)
 
 ## Structure du projet
 

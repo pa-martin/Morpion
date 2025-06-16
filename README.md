@@ -4,6 +4,10 @@ Bienvenue dans cet atelier où vous allez découvrir la programmation Java à tr
 L’objectif est de vous faire implémenter, étape par étape, les parties logiques de chaque classe. Les méthodes `print()` sont déjà fournies et ne doivent **pas** être modifiées ; concentrez-vous sur l’implémentation des fonctionnalités manquantes indiquées par des commentaires `TODO`.
 
 ---
+## Outils recommandés
+
+* L'IDE (Environnements de développement intégré) [IntelliJ IDEA Community Edition](https://www.jetbrains.com/idea/download/download-thanks.html?platform=windowsZip&code=IIC) de l'éditeur JetBrain
+* Java 21, disponible depuis l'IDE
 
 ## Structure du projet
 

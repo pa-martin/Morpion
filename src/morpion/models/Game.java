@@ -59,22 +59,12 @@ public class Game {
             int row = input.charAt(1) - '1';  // '1' → 0, '2' → 1, '3' → 2
 
             // TODO : tenter de placer le symbole du joueur courant sur la grille
-            //        Si placeMark(row, col, currentPlayer.getSymbol()) retourne false,
-            //        afficher un message du type « Case déjà occupée ou invalide. Réessayez. »
-            //        et continuer la boucle.
 
-            // TODO : si grid.checkWin(currentPlayer.getSymbol()) retourne true :
-            //           - appeler print() pour afficher l’état final
-            //           - afficher « Bravo <symbole> ! Vous avez gagné. »
-            //           - mettre finished à true
+            // TODO : Annoncer une victoire potentielle
 
-            // TODO : sinon si grid.isFull() retourne true :
-            //           - appeler print() pour afficher la grille pleine
-            //           - afficher « Match nul ! La grille est pleine. »
-            //           - mettre finished à true
+            // TODO : S'assurer que la grille n'est pas pleine
 
-            // TODO : sinon (la partie continue), basculer currentPlayer :
-            //           currentPlayer = (currentPlayer == player1) ? player2 : player1;
+            // TODO : Changer de joueur
         }
 
         scanner.close();
@@ -83,7 +73,7 @@ public class Game {
     /**
      * Vérifie que la saisie de l’utilisateur est au format attendu : [A-C][1-3].
      * @param s Chaîne à tester (ex : "A1", "C3", etc.)
-     * @return true si s.length()==2, s.charAt(0) ∈ {'A','B','C'} et s.charAt(1) ∈ {'1','2','3'}
+     * @return true si le format est valide
      */
     public boolean isValidFormat(String s) {
         // TODO : Exercice 3.1
